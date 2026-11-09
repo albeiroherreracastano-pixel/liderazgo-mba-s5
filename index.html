@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit digital · Sesión 5 · Estilos y Teorías del Liderazgo</title>
+<style>
+:root{--navy:#1F2A5C;--blue:#2C5697;--gold:#B8891C;--green:#3E8E7E;--bg:#F6F8FB;--card:#fff;--line:#E2E8F0;--muted:#5B6576;--soft:#EEF2F8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:#1E2533;line-height:1.5;font-size:16px}
+header{background:#fff;border-bottom:1px solid var(--line);padding:10px 14px 0;position:sticky;top:0;z-index:20}
+.brand{font-size:.72rem;color:var(--blue);font-weight:700;letter-spacing:.04em}
+.brand b{color:var(--navy)}
+.who{font-size:.8rem;color:var(--muted);margin-top:2px}
+nav{display:flex;gap:6px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:0 0 auto;border:1px solid var(--line);background:#fff;color:var(--navy);padding:7px 12px;border-radius:999px;font-size:.85rem;font-weight:600;cursor:pointer}
+nav button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+main{max-width:760px;margin:0 auto;padding:16px 14px 80px}
+h1{font-size:1.35rem;color:var(--navy);margin-bottom:4px}
+h2{font-size:1.1rem;color:var(--navy);margin:18px 0 8px}
+h3{font-size:1rem;color:var(--navy);margin:14px 0 6px}
+p{margin-bottom:8px}
+.sub{color:var(--muted);font-size:.9rem;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.note{background:#FFF8E6;border:1px solid #F1D48A;border-radius:12px;padding:12px;font-size:.92rem;margin-bottom:12px}
+.info{background:var(--soft);border-left:4px solid var(--blue);border-radius:8px;padding:10px 12px;font-size:.92rem;margin-bottom:12px}
+label{display:block;font-weight:600;color:var(--navy);font-size:.92rem;margin:10px 0 4px}
+textarea,input[type=text],select{width:100%;border:1px solid #CBD5E1;border-radius:10px;padding:10px;font-size:1rem;font-family:inherit;background:#fff}
+textarea{min-height:70px;resize:vertical}
+.btn{display:inline-block;border:none;border-radius:10px;padding:11px 16px;font-size:.95rem;font-weight:700;cursor:pointer;text-decoration:none;text-align:center}
+.btn-p{background:var(--navy);color:#fff}
+.btn-s{background:#fff;color:var(--navy);border:1px solid #CBD5E1}
+.btn-g{background:#E9F6F2;color:#1F6B5C;border:1px solid #A9DCCD}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 12px}
+.tabs button{border:1px solid var(--line);background:#fff;padding:8px 12px;border-radius:10px;font-weight:700;color:var(--navy);cursor:pointer}
+.tabs button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.scale{display:flex;gap:6px;margin-top:6px}
+.scale button{flex:1;border:1px solid #CBD5E1;background:#fff;border-radius:8px;padding:9px 0;font-weight:700;color:var(--navy);cursor:pointer;font-size:1rem}
+.scale button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.item{padding:12px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:none}
+.item .q{font-size:.95rem}
+.item .n{color:var(--gold);font-weight:800;margin-right:4px}
+.legend{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-top:3px}
+.bar{display:flex;align-items:center;gap:8px;margin:8px 0}
+.bar .lbl{width:104px;font-size:.88rem;font-weight:700;color:var(--navy)}
+.bar .track{flex:1;height:22px;background:var(--soft);border-radius:6px;position:relative;overflow:hidden}
+.bar .fill{height:100%;border-radius:6px;background:var(--blue)}
+.bar .val{width:34px;text-align:right;font-weight:800;color:var(--navy)}
+.zone{display:grid;grid-template-columns:70px 1fr;gap:8px;align-items:center;padding:8px;border-radius:10px;margin-bottom:6px;background:#fff;border:1px solid var(--line)}
+.zone .f{font-weight:800;color:var(--gold);font-size:.85rem}
+.zone .z{font-weight:700;color:var(--navy)}
+.zone .t{font-size:.8rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:.86rem;margin:8px 0}
+th{background:var(--navy);color:#fff;text-align:left;padding:7px}
+td{border-bottom:1px solid var(--line);padding:7px;vertical-align:top}
+tr.hi td{background:#FFF8E6}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.78rem;font-weight:700}
+.color-box{border-radius:14px;padding:16px;text-align:center;color:#fff;font-weight:800;font-size:1.15rem}
+.big-num{font-size:1.6rem;font-weight:800;color:var(--navy)}
+.hidden{display:none}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 16px;border-radius:999px;font-size:.9rem;display:none;z-index:50}
+.profile p{font-size:1rem}
+.small{font-size:.82rem;color:var(--muted)}
+.num-in{width:80px!important;text-align:center;font-size:1.1rem!important;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+</style>
+</head>
+<body>
+<header>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div class="brand">MBA · Liderazgo y Dirección de Equipos e Individuos</div><img src="data:image/png;base64,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" alt="Pontificia Universidad Javeriana Bogotá" style="height:34px;width:auto"></div>
+  <div class="who" id="who">Sesión 5 · Estilos y Teorías del Liderazgo</div>
+  <nav id="nav"></nav>
+</header>
+<main id="main"></main>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN DEL PROFESOR
+   Versión del caso del hilo 4 por número de la lista de clase:
+   'A' = Daniela · 'B' = Daniel. Cambie solo las letras.
+   ============================================================ */
+const ESTUDIANTES = {
+  'Estudiante 1':'A','Estudiante 2':'A','Estudiante 3':'A','Estudiante 4':'A','Estudiante 5':'B',
+  'Estudiante 6':'B','Estudiante 7':'A','Estudiante 8':'B','Estudiante 9':'B'
+};
+/* ============================================================ */
+
+const STYLES=[
+ {id:'coe',name:'Coercitivo',frase:'"Haz lo que te digo."',clima:'−0,26',items:[1,7,13,19,25],
+  funciona:'Hay crisis real, una emergencia o hay que frenar una conducta dañina.',alto:'La gente obedece, pero deja de pensar y de proponer.',bajo:'Cuesta decir "no" y frenar a tiempo; las crisis se alargan.'},
+ {id:'vis',name:'Visionario',frase:'"Ven conmigo."',clima:'+0,54',items:[2,8,14,20,26],
+  funciona:'Hace falta un rumbo nuevo o el equipo perdió el sentido.',alto:'Mucha dirección y poco detalle; se promete más de lo que se ejecuta.',bajo:'El equipo trabaja sin saber para qué.'},
+ {id:'afi',name:'Afiliativo',frase:'"Las personas primero."',clima:'+0,46',items:[3,9,15,21,27],
+  funciona:'Hay heridas, división o desconfianza que sanar.',alto:'Se evita la retroalimentación difícil para cuidar la relación.',bajo:'El equipo rinde, pero se siente usado.'},
+ {id:'dem',name:'Democrático',frase:'"¿Tú qué opinas?"',clima:'+0,43',items:[4,10,16,22,28],
+  funciona:'Se necesitan ideas, compromiso o el saber de otros.',alto:'Reuniones eternas y decisiones que no llegan.',bajo:'Las decisiones salen rápido, pero nadie se siente dueño.'},
+ {id:'mar',name:'Marcapasos',frase:'"Haz como yo, ahora."',clima:'−0,25',items:[5,11,17,23,29],
+  funciona:'El equipo es experto, está motivado y hay que ir rápido.',alto:'Agotamiento, microgestión y un líder que hace el trabajo de otros.',bajo:'Se toleran estándares bajos.'},
+ {id:'coa',name:'Coaching',frase:'"Prueba esto."',clima:'+0,42',items:[6,12,18,24,30],
+  funciona:'Alguien quiere crecer y hay tiempo para que aprenda.',alto:'Se enseña cuando la situación pedía decidir.',bajo:'El equipo no crece y todo depende del líder.'}
+];
+const ITEMS=[
+'Cuando detecto un riesgo serio que exige acción inmediata, doy instrucciones claras sobre qué hacer y en qué plazo.',
+'Cuando presento una iniciativa, conecto los números con una dirección futura que le dé sentido a la decisión.',
+'Si hay tensión entre mi área y otra, dedico tiempo a reconstruir la relación antes de insistir en el contenido.',
+'Antes de tomar una decisión que afecta a varias áreas, busco activamente la perspectiva de los involucrados.',
+'Cuando un trabajo no alcanza el nivel esperado, tiendo a mostrar personalmente cómo debería hacerse.',
+'Cuando alguien comete un error, uso preguntas para ayudarle a entender qué necesita desarrollar.',
+'Ante una desviación crítica en resultados, presupuesto o plazos, priorizo rapidez y control aunque deba limitar la discusión.',
+'En momentos de incertidumbre, ayudo a traducir los datos en una idea clara de hacia dónde debemos avanzar.',
+'Cuando alguien del equipo atraviesa una situación personal difícil, ajusto mi forma de exigir sin perder de vista el resultado.',
+'En discusiones sobre prioridades o recursos, prefiero escuchar argumentos diversos antes de cerrar una posición.',
+'Suelo fijar estándares de calidad, precisión y velocidad más exigentes que los que el equipo se impone a sí mismo.',
+'Me interesa conocer las aspiraciones profesionales de quienes trabajan conmigo y relacionarlas con oportunidades de aprendizaje.',
+'Si una entrega clave está en riesgo, asumo el control y reparto responsabilidades de manera directa.',
+'Al explicar un recorte o una reasignación de recursos, muestro qué futuro se busca construir y no solo qué se pierde.',
+'Cuando una discusión genera un desacuerdo fuerte, busco preservar la confianza para que la relación no se deteriore.',
+'Cuando no tengo toda la información para decidir, involucro a otros en la construcción de la respuesta.',
+'Me impaciento cuando otros tardan más de lo razonable en dominar algo que para mí es evidente.',
+'Prefiero acompañar a una persona para que encuentre su propia respuesta antes que resolverle el problema.',
+'Cuando alguien incumple repetidamente compromisos importantes, lo confronto de forma firme y explícita.',
+'Puedo convertir indicadores y resultados en una historia que movilice a personas de otras áreas.',
+'Reconozco de forma deliberada el esfuerzo del equipo, sobre todo después de periodos de alta presión.',
+'Estoy dispuesto a cambiar mi decisión si los argumentos de otros muestran que existe una alternativa mejor.',
+'Cuando el tiempo es corto, asumo personalmente partes críticas del trabajo para asegurar el estándar.',
+'Cuando delego, converso no solo sobre el entregable sino también sobre lo que la persona puede aprender del proceso.',
+'En una crisis, puedo tomar decisiones impopulares sin prolongar innecesariamente la discusión.',
+'En procesos de transformación (tecnología, estructura, modelo de negocio) dedico tiempo a construir propósito y dirección.',
+'Si percibo que alguien está desmotivado después de un error o una crítica, procuro recuperar primero su confianza.',
+'En reuniones, hago preguntas genuinas y doy espacio a personas de menor jerarquía para que cuestionen los supuestos.',
+'Mi tendencia natural es subir el ritmo y la exigencia cuando los resultados están por debajo de lo esperado.',
+'Acepto cierto margen de error cuando alguien está aprendiendo una responsabilidad nueva, siempre que haya reflexión.'];
+const OBS=[
+'Ante un riesgo serio que exige acción inmediata, da instrucciones claras sobre qué hacer y en qué plazo.',
+'Cuando presenta una iniciativa, conecta los números con una dirección futura que le da sentido.',
+'Si hay tensión entre su área y otra, reconstruye la relación antes de insistir en el contenido.',
+'Antes de decidir algo que afecta a varias áreas, busca la perspectiva de los involucrados.',
+'Cuando un trabajo no alcanza el nivel esperado, muestra personalmente cómo debería hacerse.',
+'Cuando alguien comete un error, usa preguntas para ayudarle a entender qué debe desarrollar.',
+'Ante una desviación crítica, prioriza rapidez y control aunque limite la discusión.',
+'En la incertidumbre, traduce los datos en una idea clara de hacia dónde avanzar.',
+'Cuando alguien atraviesa una situación personal difícil, ajusta su forma de exigir sin perder el resultado.',
+'En discusiones sobre prioridades o recursos, escucha argumentos diversos antes de cerrar una posición.',
+'Fija estándares de calidad y velocidad más exigentes que los que el equipo se impone.',
+'Se interesa por las aspiraciones profesionales de su gente y las conecta con oportunidades de aprendizaje.',
+'Si una entrega clave está en riesgo, toma el control y reparte responsabilidades de manera directa.',
+'Al explicar un recorte, muestra qué futuro se busca construir y no solo qué se pierde.',
+'En un desacuerdo fuerte, cuida la confianza para que la relación no se deteriore.',
+'Cuando no tiene toda la información, involucra a otros en la construcción de la respuesta.',
+'Se impacienta cuando otros tardan en dominar algo que para esta persona es evidente.',
+'Acompaña a las personas para que encuentren su propia respuesta en lugar de resolverles el problema.',
+'Cuando alguien incumple compromisos importantes de manera repetida, lo confronta con firmeza.',
+'Convierte indicadores y resultados en una historia que moviliza a personas de otras áreas.',
+'Reconoce de forma deliberada el esfuerzo del equipo, sobre todo después de periodos de presión.',
+'Cambia su decisión si los argumentos de otros muestran una alternativa mejor.',
+'Cuando el tiempo es corto, asume personalmente partes críticas del trabajo.',
+'Cuando delega, conversa también sobre lo que la persona puede aprender del proceso.',
+'En una crisis, toma decisiones impopulares sin prolongar la discusión.',
+'En procesos de transformación, dedica tiempo a construir propósito y dirección.',
+'Si alguien está desmotivado después de un error o una crítica, recupera primero su confianza.',
+'En reuniones, da espacio a personas de menor jerarquía para que cuestionen los supuestos.',
+'Cuando los resultados están por debajo de lo esperado, sube el ritmo y la exigencia.',
+'Acepta cierto margen de error cuando alguien está aprendiendo algo nuevo, siempre que haya reflexión.'];
+
+const DOSSIERS={
+ 'NACE':{pos:'El liderazgo tiene una base heredada que ninguna formación reemplaza.',
+  evid:['<b>Gemelos y herencia.</b> Arvey y colegas (2006) compararon gemelos idénticos y no idénticos y estimaron que cerca del 30% de la diferencia entre quienes llegan a ocupar cargos de liderazgo y quienes no se explica por factores genéticos. En 2007 el mismo equipo encontró un resultado muy parecido en una muestra de mujeres.',
+        '<b>Un gen identificado.</b> De Neve y colegas (2013), con datos de un estudio longitudinal de adolescentes en Estados Unidos, estimaron la herencia en 24% y asociaron por primera vez un marcador genético específico (rs4950) con la tendencia a ocupar cargos de liderazgo. Replicaron el hallazgo en una segunda muestra.',
+        '<b>La personalidad pesa.</b> El metaanálisis de Judge y colegas (2002) encontró que la extraversión es el rasgo de personalidad más asociado con emerger como líder. La personalidad, a su vez, tiene una base heredada.'],
+  arg:'Si una cuarta parte o más de quién llega a liderar ya viene dada, las empresas no deberían gastar lo mismo formando a todos. Deberían seleccionar mejor.',
+  ataque:'Les van a decir que si el 30% es herencia, el 70% no lo es. Respuesta posible: "Nadie dice que el 70% sea formación. Incluye la suerte, el entorno familiar y muchas cosas que una empresa tampoco controla."',
+  extra:'Para pensar antes de exponer: ¿qué cambia en la forma de seleccionar y promover personas si su posición es correcta?'},
+ 'SE HACE':{pos:'El liderazgo es una capacidad que se desarrolla con práctica y formación.',
+  evid:['<b>La formación funciona, y bastante.</b> Lacerenza y colegas (2017) analizaron 335 muestras de programas de formación en liderazgo. Encontraron efectos positivos e importantes en la reacción de los participantes, en lo que aprenden, en lo que llevan a su trabajo y en los resultados de la organización. El efecto más fuerte fue la transferencia al trabajo.',
+        '<b>El mismo estudio de gemelos lo dice.</b> Arvey y colegas (2006) estimaron que la herencia explica cerca del 30% de quién ocupa cargos de liderazgo. La mayor parte de la explicación queda del lado de la experiencia.',
+        '<b>La experiencia enseña más que el aula.</b> El Center for Creative Leadership popularizó el modelo 70-20-10: el 70% del aprendizaje viene de retos en el trabajo, el 20% de otras personas y el 10% de cursos. Ojo: la proporción exacta no está bien sustentada en investigación, pero la idea de que se aprende liderando sí tiene respaldo.'],
+  arg:'Si el liderazgo se aprende, la pregunta deja de ser a quién elegir y pasa a ser cómo desarrollar a cada persona. Además, lo que se hereda es la tendencia a ocupar un cargo, no la capacidad de hacerlo bien.',
+  ataque:'Les van a decir que los programas de formación casi nunca cambian a nadie. Respuesta posible: "El metaanálisis muestra que funcionan cuando están bien diseñados: con práctica, retroalimentación y varias sesiones."',
+  extra:'Para pensar antes de exponer: si el liderazgo se hace, ¿qué los hizo a ustedes? Tengan un ejemplo propio listo.'},
+ 'INTERACCIÓN':{pos:'Lo heredado y lo aprendido no se suman, se combinan. El entorno cambia lo que hacen los genes.',
+  evid:['<b>El entorno modera la herencia.</b> Zhang, Ilies y Arvey (2009) estudiaron gemelos y encontraron que en quienes crecieron con un entorno más rico (mejor situación socioeconómica, más apoyo de sus padres y menos conflicto con ellos) la influencia genética en llegar a liderar es menor. En entornos más pobres, la herencia pesa bastante más.',
+        '<b>No es una suma.</b> Los autores de "Born to lead?" (De Neve y colegas, 2013), aun habiendo encontrado un marcador genético, concluyen que ocupar un cargo de liderazgo es el producto complejo de influencias genéticas y del entorno.',
+        '<b>La práctica sobre la base.</b> Lacerenza y colegas (2017) muestran que la formación funciona mejor cuando incluye práctica y retroalimentación. Lo heredado puede ser una predisposición; lo que se hace con ella depende del entorno.'],
+  arg:'Si el entorno temprano cambia el peso de la herencia, las organizaciones también son un entorno: pueden reducir o ampliar la ventaja de quien llegó con más condiciones. La pregunta útil es "¿qué entorno estoy creando para que la gente desarrolle lo que trae?"',
+  ataque:'Les van a decir que "las dos cosas" es una respuesta cómoda. Tienen que decir algo concreto: cuánto pesa cada parte, cómo se combinan y qué cambia para contratar o formar líderes. Si no, pierden el debate.',
+  extra:'Su exigencia es mayor: completen la frase "Una empresa que nos crea a nosotros debería dejar de ___ y empezar a ___."'}
+};
+const ZONES=[
+ ['Puerta del fondo','ANTES DE TRABAJAR','Casa · colegio · equipo · grupo'],
+ ['Fila 5','1 · El que manda','Gran hombre y rasgos · 1840–1940'],
+ ['Fila 4','2 · Tarea o personas','Teorías conductuales · 1950–1960'],
+ ['Fila 3','3 · Depende','Contingencia y situacional · 1960–1970'],
+ ['Fila 2','4 · Intercambio o inspiración','Transaccional y transformacional · 1978–1990'],
+ ['Fila 1','5 · Al servicio y desde adentro','Servidor, auténtico, adaptativo · 1970–2000'],
+ ['Tarima','? · La era de la IA','Se abre en la Sesión 7']];
+const KITS={
+ 'G1':{pair:['vis','coe'],tension:'Dar dirección: inspirar o imponer',
+   q:'Los dos dan dirección. ¿Qué diferencia hay entre decir "para dónde vamos" y decir "qué tiene que hacer cada uno"? ¿Cuándo el visionario necesita un momento coercitivo?',
+   que:{vis:'Moviliza a la gente hacia una visión: dice para dónde vamos y deja libertad sobre cómo llegar.',coe:'Exige obediencia inmediata y controla de cerca.'}},
+ 'G2':{pair:['coa','mar'],tension:'Elevar el desempeño: enseñar o hacerlo yo',
+   q:'Los dos quieren que el equipo rinda más. Uno invierte tiempo para que el otro aprenda; el otro gana tiempo haciéndolo él. ¿Cuál es el costo oculto de cada uno?',
+   que:{coa:'Desarrolla a las personas para el futuro: conecta sus metas con las de la organización.',mar:'Fija estándares muy altos y los modela él mismo.'}},
+ 'G3':{pair:['afi','dem'],tension:'Sumar a la gente, y sus riesgos',
+   q:'Los dos tienen efecto positivo en el clima. Su tarea es mostrar cuándo fallan: ¿qué pasa cuando cuidar la relación evita una conversación difícil, o cuando escuchar a todos impide decidir?',
+   que:{afi:'Crea armonía y vínculos emocionales en el equipo.',dem:'Construye consenso a través de la participación.'}}
+};
+const DESAFIOS=[
+ ['Desafío 1 · El equipo agotado','Tu mejor analista renunció en plena preparación del presupuesto del próximo año. Los cinco que quedan deben absorber su trabajo durante seis semanas. Dos de ellos llevan meses desmotivados y uno está buscando trabajo afuera.'],
+ ['Desafío 2 · La fusión de dos áreas','La empresa fusiona dos áreas con culturas opuestas: una muy rápida y otra muy cuidadosa con los procesos. En 90 días debe existir un solo proceso. Los dos jefes anteriores compiten por quedarse con el liderazgo del área nueva.'],
+ ['Desafío 3 · El incidente','Un error en un sistema expuso datos de clientes. Hay que actuar en las próximas 24 horas. El equipo técnico propone tres soluciones distintas y no se pone de acuerdo, y el área comercial presiona para que no se informe a los clientes todavía.']];
+
+/* ---------- estado ---------- */
+let S={};
+try{S=JSON.parse(localStorage.getItem('kitS5')||'{}')}catch(e){S={}}
+function save(){try{localStorage.setItem('kitS5',JSON.stringify(S))}catch(e){}}
+function v(k,d=''){return S[k]!==undefined?S[k]:d}
+function setv(k,val){S[k]=val;save()}
+function esc(t){return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';clearTimeout(t._h);t._h=setTimeout(()=>t.style.display='none',2200)}
+function ta(k,label,ph=''){return `<label>${label}</label><textarea data-k="${k}" placeholder="${esc(ph)}">${esc(v(k))}</textarea>`}
+function tx(k,label,ph=''){return `<label>${label}</label><input type="text" data-k="${k}" placeholder="${esc(ph)}" value="${esc(v(k))}">`}
+function sel(k,label,opts){return `<label>${label}</label><select data-k="${k}"><option value="">Elegir…</option>${opts.map(o=>`<option ${v(k)===o?'selected':''}>${esc(o)}</option>`).join('')}</select>`}
+function bindInputs(root){root.querySelectorAll('[data-k]').forEach(el=>{el.addEventListener('input',()=>setv(el.dataset.k,el.value));el.addEventListener('change',()=>setv(el.dataset.k,el.value))})}
+async function copyText(txt){try{await navigator.clipboard.writeText(txt);toast('Copiado')}catch(e){toast('No se pudo copiar: selecciónalo a mano')}}
+function waLink(txt){return 'https://wa.me/?text='+encodeURIComponent(txt)}
+function styleName(id){return STYLES.find(s=>s.id===id).name}
+
+/* ---------- vistas ---------- */
+const VIEWS=[
+ ['inicio','Inicio'],['debate','1 · Debate'],['maestros','2 · Maestros'],['autodx','3 · Autodiagnóstico'],
+ ['investigacion','3 · Investigación'],['caso','4 · Caso'],['espejo','5 · Espejo'],['practica','6 · Práctica'],['resumen','Mi resumen']];
+function nav(){document.getElementById('nav').innerHTML=VIEWS.map(([id,l])=>`<button data-v="${id}" class="${cur===id?'on':''}">${l}</button>`).join('');
+ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.v))}
+let cur='inicio';
+function go(id){cur=id;try{history.replaceState(null,'','#'+id)}catch(e){};render();window.scrollTo(0,0)}
+
+function render(){
+ const m=document.getElementById('main');
+ const name=v('nombre');
+ document.getElementById('who').textContent=name?`Sesión 5 · ${name}`:'Sesión 5 · Estilos y Teorías del Liderazgo';
+ if(cur==='observador'){document.getElementById('nav').innerHTML='';document.getElementById('who').textContent='Mirada de un observador · 360°';m.innerHTML=viewObservador();bindObs();return}
+ nav();
+ const fn={inicio:viewInicio,debate:viewDebate,maestros:viewMaestros,autodx:viewAutodx,investigacion:viewInvest,caso:viewCaso,espejo:viewEspejo,practica:viewPractica,resumen:viewResumen}[cur]||viewInicio;
+ m.innerHTML=fn(); bindInputs(m); afterRender();
+}
+let afterHooks=[];function afterRender(){const h=afterHooks;afterHooks=[];h.forEach(f=>f())}
+
+function viewInicio(){
+ afterHooks.push(()=>{document.getElementById('goDeb').onclick=()=>go('debate')});
+ return `<h1>Kit digital · Sesión 5</h1><p class="sub">Martes 10 de noviembre de 2026 · Estilos y Teorías del Liderazgo</p>
+ <div class="card">${sel('nombre','¿Cuál es tu número? (tu posición en la lista de clase, proyectada en la pantalla)',Object.keys(ESTUDIANTES))}
+ <p class="small" style="margin-top:8px">Lo que escribas se guarda solo en este celular. No le llega a nadie, salvo lo que tú decidas copiar o enviar.</p></div>
+ <div class="info">Abre cada sección solo cuando el profesor lo indique. Cada sección tiene el número del hilo de la noche.</div>
+ <div class="card"><h3>Reglas del celular esta noche</h3><p>• Solo para este kit.<br>• Boca abajo en los momentos de conversación.<br>• Lo que se dice en el salón se queda en el salón.</p></div>
+ <button class="btn btn-p" id="goDeb">Empezar</button>`}
+
+function viewDebate(){
+ const g=v('grupoDebate');
+ afterHooks.push(()=>{document.querySelectorAll('#dtabs button').forEach(b=>b.onclick=()=>{setv('grupoDebate',b.dataset.g);render()})});
+ let dos='';
+ if(g){const D=DOSSIERS[g];
+  dos=`<div class="card"><h2>Dossier del grupo ${g}</h2><p><b>Posición:</b> ${D.pos}</p>
+  <h3>Lo que dice la evidencia</h3>${D.evid.map(e=>`<p>• ${e}</p>`).join('')}
+  <h3>Su mejor argumento</h3><p>${D.arg}</p>
+  <h3>Por dónde los van a atacar</h3><p>${D.ataque}</p>
+  <div class="note">${D.extra}</div></div>
+  <div class="card"><h2>Preparación (10 min)</h2><p class="small">Roles: <b>tesis</b> abre · <b>datos</b> presenta la evidencia · <b>caso</b> cuenta un caso real sin nombres.</p>
+  ${sel('rolDebate','Mi rol',['Tesis','Datos','Caso'])}
+  ${ta('deb_tesis','Nuestra tesis en una frase')}${ta('deb_datos','Las dos cifras que vamos a usar')}${ta('deb_caso','El caso real (tres líneas)')}${ta('deb_preg','La pregunta para cada uno de los otros grupos')}</div>`}
+ return `<h1>Hilo 1 · ¿El líder nace o se hace?</h1>
+ <div class="card"><h3>Tu número secreto</h3><p class="small">1 = nace · 10 = se hace. Nadie más lo ve.</p>
+ <div class="grid2"><div><label>A las 6:00 p. m.</label><input type="text" inputmode="numeric" class="num-in" data-k="num_ini" value="${esc(v('num_ini'))}"></div>
+ <div><label>Al cierre</label><input type="text" inputmode="numeric" class="num-in" data-k="num_fin" value="${esc(v('num_fin'))}"></div></div></div>
+ <div class="card"><h3>Mi grupo</h3><div class="tabs" id="dtabs">${Object.keys(DOSSIERS).map(k=>`<button data-g="${k}" class="${g===k?'on':''}">${k}</button>`).join('')}</div>
+ ${g?'':'<p class="small">Elige el grupo que te asignó el profesor para ver tu dossier.</p>'}</div>${dos}`}
+
+function viewMaestros(){
+ return `<h1>Hilo 2 · Los maestros que me hicieron</h1>
+ <div class="info">Solo la frase, no la historia. Si alguna etapa no es un lugar al que quieras ir hoy, elige a otra persona que te haya enseñado a mandar. No escribas nombres.</div>
+ <h2>El mapa del auditorio</h2>${ZONES.map(z=>`<div class="zone"><div class="f">${z[0]}</div><div><div class="z">${z[1]}</div><div class="t">${z[2]}</div></div></div>`).join('')}
+ <div class="card"><h2>Mis tres maestros</h2>
+ ${sel('m1_donde','1. Mi primer maestro, antes de trabajar: ¿dónde?',['Casa','Colegio','Equipo deportivo','Grupo (scouts, iglesia, barrio)','Otro'])}
+ ${tx('m1_frase','Su frase','"En esta casa…"')}${sel('m1_zona','Zona donde cae',ZONES.slice(1,6).map(z=>z[1]))}
+ ${tx('m2_frase','2. Mi primer jefe: su frase')}${sel('m2_zona','Zona',ZONES.slice(1,6).map(z=>z[1]))}
+ ${tx('m3_frase','3. El jefe que más me marcó: su frase')}${sel('m3_zona','Zona',ZONES.slice(1,6).map(z=>z[1]))}</div>
+ <div class="card"><h2>Mi camino, caminado</h2><p class="small">Anota la fila donde te paraste en cada momento.</p>
+ ${sel('c1','Mi primer cargo con personas a cargo',ZONES.slice(1,6).map(z=>z[1]))}${sel('c2','Hoy',ZONES.slice(1,6).map(z=>z[1]))}
+ ${ta('c_preg','¿Qué frase de mi primer maestro sigo diciendo en la oficina? ¿La elegí o la heredé?')}</div>`}
+
+function scores(){const r={};let n=0;STYLES.forEach(s=>{let t=0;s.items.forEach(i=>{const a=+v('a'+i,0);if(a)n++;t+=a});r[s.id]=t});return {r,n:n}}
+function viewAutodx(){
+ const ans=i=>+v('a'+i,0);
+ const {n}=scores();
+ afterHooks.push(()=>{
+  document.querySelectorAll('.scale button').forEach(b=>b.onclick=()=>{setv('a'+b.dataset.i,+b.dataset.v);b.parentNode.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));document.getElementById('cnt').textContent=scores().n});
+  document.getElementById('verRes').onclick=()=>{if(scores().n<30){toast('Faltan respuestas');return}setv('showRes',true);render();setTimeout(()=>document.getElementById('res').scrollIntoView(),50)};
+ });
+ return `<h1>Hilo 3 · Autodiagnóstico de estilos</h1>
+ <div class="note"><b>Antes de responder.</b> Piensa en tu <b>semana más exigente del último trimestre</b>, no en tu mejor versión. No hay respuestas correctas. Si hoy no tienes personas a cargo, piensa en situaciones donde coordinas, influyes o movilizas decisiones.</div>
+ <p class="small">1 Casi nunca · 2 Pocas veces · 3 Algunas veces · 4 Frecuentemente · 5 Casi siempre</p>
+ <div class="card">${ITEMS.map((t,k)=>{const i=k+1;return `<div class="item"><div class="q"><span class="n">${i}.</span>${t}</div><div class="scale">${[1,2,3,4,5].map(x=>`<button data-i="${i}" data-v="${x}" class="${ans(i)===x?'on':''}">${x}</button>`).join('')}</div></div>`}).join('')}</div>
+ <p class="small">Respondidas: <b id="cnt">${n}</b> de 30</p>
+ <div class="info">No veas tu resultado todavía. El profesor te dirá cuándo, después de las presentaciones.</div>
+ <button class="btn btn-p" id="verRes">Ver mi resultado</button>
+ <div id="res">${v('showRes')?resultado():''}</div>
+ <p class="small" style="margin-top:20px">Advertencia metodológica: instrumento pedagógico de autoconocimiento, inspirado en los seis estilos descritos por Daniel Goleman (2000). No es una prueba psicométrica validada.</p>`}
+function shape(r){
+ const arr=STYLES.map(s=>({id:s.id,name:s.name,v:r[s.id]})).sort((a,b)=>b.v-a.v);
+ const out=[];const max=arr[0],min=arr[5];
+ if(max.v-min.v<5) out.push(['Perfil plano','Menos de 5 puntos entre el estilo más alto y el más bajo. Puede ser un repertorio amplio, o respuestas pensadas en lo que "debería" hacer.','¿Respondí pensando en mi semana más difícil o en mi mejor versión?']);
+ if(max.v-arr[1].v>=5) out.push(['Perfil con un pico',`${max.name} está 5 o más puntos por encima del siguiente. Puede ser tu estilo de refugio: el que aparece cuando no hay tiempo de pensar.`,'¿Qué pasa en mi equipo cuando uso ese estilo todo el tiempo?']);
+ arr.filter(a=>a.v<=12).forEach(a=>out.push([`Un valle en ${a.name}`,`Está en ${a.v}: es un estilo casi ausente. No es un defecto; es un riesgo cuando la situación lo pida.`,'¿Qué situación reciente me pedía este estilo y no lo usé?']));
+ const top2=[arr[0].id,arr[1].id];
+ if(top2.includes('coe')&&top2.includes('mar')) out.push(['Coercitivo y Marcapasos arriba','Bajo presión, el clima del equipo tiende a deteriorarse (Goleman: −0,26 y −0,25).','¿Quién de mi equipo paga el costo de mi exigencia?']);
+ if(top2.includes('afi')&&top2.includes('dem')&&r.coe<=14) out.push(['Afiliativo y Democrático arriba, Coercitivo abajo','Buen clima, pero riesgo de evitar el conflicto o de tardar en decidir.','¿Qué decisión difícil estoy posponiendo?']);
+ if(!out.length) out.push(['Perfil escalonado','Tus estilos se reparten sin extremos marcados. Mira cuál usas bajo presión: suele ser distinto del más alto.','¿Cuál de mis estilos aparece primero cuando me presionan?']);
+ return {arr,out}}
+function resultado(){
+ const {r}=scores();const {arr,out}=shape(r);
+ const bars=STYLES.map(s=>{const val=r[s.id];const pct=((val-5)/20)*100;const col=val>=20?'#2C5697':val>=13?'#7FA0CF':'#D9A441';
+  return `<div class="bar"><div class="lbl">${s.name}</div><div class="track"><div class="fill" style="width:${Math.max(4,pct)}%;background:${col}"></div></div><div class="val">${val}</div></div>`}).join('');
+ return `<h2>Mi perfil</h2><div class="card">${bars}<p class="small">Escala de 5 a 25 · Bajo 5–12 · Medio 13–19 · Alto 20–25</p></div>
+ <div class="info"><b>La pregunta central no es "¿cuál es mi estilo?"</b> Es: ¿tengo la flexibilidad para usar el estilo que esta persona, este equipo y esta situación necesitan de mí? Goleman encontró que los líderes con mejores resultados dominan cuatro o más estilos.</div>
+ <h2>Cómo leer tu perfil</h2>${out.map(o=>`<div class="card"><h3>${o[0]}</h3><p>${o[1]}</p><p><b>Pregunta:</b> ${o[2]}</p></div>`).join('')}
+ <h2>Cada estilo, en exceso y en ausencia</h2><p class="small">Resaltados en amarillo: tus estilos en zona alta o baja.</p>
+ ${STYLES.map(s=>`<div class="card" style="${(r[s.id]>=20||r[s.id]<=12)?'background:#FFF8E6;border-color:#F1D48A':''}"><h3 style="margin-top:0">${s.name} <span class="pill" style="background:#EEF2F8;color:#1F2A5C">${r[s.id]}</span></h3><p class="small">${s.frase} · correlación con el clima ${s.clima}</p><p><b>Funciona cuando:</b> ${s.funciona}</p><p><b>Si está muy alto:</b> ${s.alto}</p><p style="margin-bottom:0"><b>Si está muy bajo:</b> ${s.bajo}</p></div>`).join('')}
+ <div class="card"><h2>Mis respuestas</h2>
+ ${sel('r_nat','El estilo que aparece con más naturalidad en mí',STYLES.map(s=>s.name))}
+ ${sel('r_pres','Bajo presión, el que más uso',STYLES.map(s=>s.name))}
+ ${sel('r_menos','El que menos uso o más me incomoda',STYLES.map(s=>s.name))}
+ ${ta('r_sit','¿En qué situación reciente me faltó ese estilo?')}
+ ${ta('r_maestro','¿Se parece mi estilo más alto a la frase de mi primer maestro?')}</div>`}
+
+function viewInvest(){
+ const g=v('grupoInv');
+ afterHooks.push(()=>{document.querySelectorAll('#itabs button').forEach(b=>b.onclick=()=>{setv('grupoInv',b.dataset.g);render()})});
+ let body='';
+ if(g){const K=KITS[g];
+  body=`<div class="card"><h2>Kit ${g} · ${K.pair.map(styleName).join(' + ')}</h2><p><b>Tensión:</b> ${K.tension}</p>
+  <p class="small">20 minutos. Pueden usar internet o IA, declarándolo. Fuente principal: Goleman, D. (2000). "Leadership That Gets Results". Harvard Business Review.</p></div>
+  ${K.pair.map(id=>{const s=STYLES.find(x=>x.id===id);return `<div class="card"><h2>${s.name}</h2>
+  <table><tr><th colspan="2">Punto de partida</th></tr><tr><td><b>Frase típica</b></td><td>${s.frase}</td></tr><tr><td><b>Qué hace</b></td><td>${K.que[id]}</td></tr><tr><td><b>Clima (Goleman)</b></td><td>${s.clima}</td></tr></table>
+  ${ta(g+id+'_cuando','Cuándo funciona mejor')}${ta(g+id+'_max','Qué pasa si se sube al máximo')}${ta(g+id+'_sin','Qué se pierde si desaparece')}${ta(g+id+'_escena','La escena de 60 segundos: quién, dónde, qué dice el líder')}</div>`}).join('')}
+  <div class="note"><b>La tensión que deben mostrar.</b> ${K.q}</div>
+  <div class="info"><b>Cómo presentan (6 min):</b> 1) actúan la escena del primer estilo sin nombrarlo y la sala adivina; 2) lo mismo con el segundo; 3) explican los dos y la tensión entre ellos.</div>`}
+ return `<h1>Hilo 3 · Investigación y desafíos</h1>
+ <div class="card"><h3>Mi grupo de investigación</h3><div class="tabs" id="itabs">${Object.keys(KITS).map(k=>`<button data-g="${k}" class="${g===k?'on':''}">${k}</button>`).join('')}</div></div>${body}
+ <h2>Desafíos · Mesa de mezclas</h2>
+ ${DESAFIOS.map((d,i)=>`<div class="card"><h3>${d[0]}</h3><p>${d[1]}</p></div>`).join('')}
+ <div class="card"><h3>La mezcla de mi grupo</h3>${sel('mez_des','Desafío',DESAFIOS.map(d=>d[0]))}
+ <div class="grid2">${sel('mez_a1','Arriba',STYLES.map(s=>s.name))}${sel('mez_a2','Arriba',STYLES.map(s=>s.name))}</div>${sel('mez_b','Abajo',STYLES.map(s=>s.name))}${ta('mez_pq','Por qué')}</div>
+ <div class="card"><h3>Y mi situación real</h3><p class="small">Esta línea la vas a usar al final de la noche.</p>${ta('real_sit','La situación')}
+ <div class="grid2">${sel('real_a1','Arriba',STYLES.map(s=>s.name))}${sel('real_a2','Arriba',STYLES.map(s=>s.name))}</div>${sel('real_b','Abajo',STYLES.map(s=>s.name))}</div>`}
+
+function viewCaso(){
+ const name=v('nombre');
+ if(!name) return `<h1>Hilo 4</h1><div class="note">Primero elige tu nombre en <b>Inicio</b>.</div>`;
+ const ver=ESTUDIANTES[name]||'A';const fem=ver==='A';
+ const N=fem?'Daniela Restrepo':'Daniel Restrepo';const P=fem?'Daniela':'Daniel';
+ const done=v('caso_ok');
+ afterHooks.push(()=>{const b=document.getElementById('casoOk');if(b)b.onclick=()=>{const need=['k_comp','k_simp','k_conf','k_contr','k_d1','k_d2','k_d3'];if(need.some(k=>!v(k))){toast('Completa todas las calificaciones');return}setv('caso_ok',true);render()}});
+ const num=(k,l)=>`<div class="bar"><div class="lbl" style="width:auto;flex:1">${l}</div><input type="text" inputmode="numeric" class="num-in" data-k="${k}" value="${esc(v(k))}" ${done?'disabled':''}></div>`;
+ const colorBox=done?`<div class="color-box" style="background:${fem?'#2C5697':'#3E8E7E'}">Tu color es ${fem?'AZUL':'VERDE'}</div>
+  <div class="card" style="margin-top:12px"><p>Cuando el profesor lo pida, di en voz alta solo estos tres números:</p>
+  <div class="grid2" style="grid-template-columns:1fr 1fr 1fr;text-align:center"><div><div class="big-num">${esc(v('k_simp'))}</div><div class="small">Simpatía</div></div><div><div class="big-num">${esc(v('k_conf'))}</div><div class="small">Confianza</div></div><div><div class="big-num">${esc(v('k_d1'))}</div><div class="small">Decisión 1</div></div></div>
+  <p class="small" style="margin-top:8px">Y tus tres adjetivos: <b>${esc(v('k_adj'))}</b></p></div>`:'';
+ return `<h1>Hilo 4 · Perfil de un líder</h1><div class="info">Léelo solo. No lo compares con el celular de tu vecino.</div>
+ <div class="card profile"><h2 style="margin-top:0">${N}</h2><p class="small">Gerente general · Tiendas Alcora, cadena regional de tiendas de barrio, Eje Cafetero</p>
+ <p>${P} tiene 44 años. Entró a Tiendas Alcora en 2014 como ${fem?'jefa':'jefe'} de compras, cuando la cadena tenía tres tiendas. Hoy la empresa tiene 40 tiendas, 620 empleados y ventas cercanas a 180.000 millones de pesos al año. Es ${fem?'conocida':'conocido'} en el sector por su red de contactos con proveedores y por haber negociado personalmente, en 2022, una alianza con una cadena nacional de droguerías.</p>
+ <p><b>Tres decisiones marcaron su gestión:</b></p>
+ <p><b>1. La crisis.</b> En abril de 2020 cerró seis tiendas en una semana, sin consultar a la junta ni al equipo directivo, para proteger la caja. Varios gerentes de tienda se enteraron por correo. La empresa no tuvo que despedir a nadie más ese año.</p>
+ <p><b>2. Las cifras de los lunes.</b> Desde 2021 exige a cada gerente de tienda un reporte de resultados todos los lunes a las 8:00 a. m. Los revisa en una reunión general en la que corrige en público a quien no cumplió la meta.</p>
+ <p><b>3. Las visitas.</b> En 2022, al ver que la rotación de personal había llegado al 18%, pasó tres meses visitando cada tienda: conversó con cajeros y bodegueros, escuchó quejas y reorganizó turnos. Al año siguiente la rotación bajó al 9%.</p>
+ <p>Sus colaboradores ${fem?'la':'lo'} describen como "${fem?'directa':'directo'}" y "muy exigente". Dos de sus antiguos gerentes trabajan hoy en la competencia.</p></div>
+ <div class="card"><h2>Tu calificación (1 a 10)</h2><p class="small">Primera impresión.</p>
+ ${num('k_comp','Competencia')}${num('k_simp','Simpatía')}${num('k_conf','Confianza que le genera')}${num('k_contr',`¿${fem?'La':'Lo'} contrataría para dirigir su empresa?`)}
+ <h3>¿Qué tan apropiada fue cada decisión?</h3>${num('k_d1','1. Cerrar seis tiendas sin consultar')}${num('k_d2','2. Corregir en público los lunes')}${num('k_d3','3. Visitar cada tienda tres meses')}
+ ${tx('k_adj',`Tres adjetivos para describir a ${P}`)}
+ ${done?'':'<div class="row"><button class="btn btn-p" id="casoOk">Listo</button></div>'}</div>${colorBox}
+ <div class="card"><h2>Voces cruzadas</h2><p>Escribe tu frase en el post-it, sin nombre, y échalo en la bolsa:</p><p>• Mujeres: <b>"A un hombre que lidera no se le permite…"</b><br>• Hombres: <b>"A una mujer que lidera no se le permite…"</b><br>• Si no quieres ubicarte en ninguno de los dos lados, escribe las dos.</p></div>`}
+
+function viewEspejo(){
+ const {r,n}=scores();
+ const rows=STYLES.map(s=>`<tr><td><b>${s.name}</b></td><td>${n===30?r[s.id]:'—'}</td><td><input type="text" inputmode="numeric" class="num-in" style="width:56px!important" data-k="e_mas_${s.id}" value="${esc(v('e_mas_'+s.id))}"></td><td><input type="text" inputmode="numeric" class="num-in" style="width:56px!important" data-k="e_nun_${s.id}" value="${esc(v('e_nun_'+s.id))}"></td></tr>`).join('');
+ return `<h1>Hilo 5 · El espejo</h1>
+ <div class="card"><h2>El círculo</h2><p>Cada compañero te dice, cara a cara:</p><p><b>"El estilo que más te veo aquí es ___, por ejemplo cuando ___."</b><br><b>"El que nunca te he visto es ___."</b></p><p class="small">Tú solo escuchas y anotas. Al final puedes decir "gracias", nada más.</p></div>
+ <div class="card" style="overflow-x:auto"><h2>Mi mapa de brecha</h2><p class="small">Anota cuántos compañeros mencionaron cada estilo.</p>
+ <table><tr><th>Estilo</th><th>Mi puntaje</th><th>"Más te veo"</th><th>"Nunca te he visto"</th></tr>${rows}</table>
+ ${ta('e_coincide','Lo que coincide')}${ta('e_ciego','Mi punto ciego: los demás lo ven y yo me califiqué bajo')}${ta('e_fachada','Mi fachada: yo me califiqué alto y aquí nadie lo ve')}</div>
+ <div class="note"><b>Tríos de la verdad.</b> Di en voz alta frente a tus dos compañeros:<br><br>"El estilo que ejerzo <b>por comodidad</b> es ___."<br>"El estilo que evito <b>por inseguridad</b> es ___, y lo evito porque ___."<br><br>Cada compañero puede hacer una sola pregunta. Sin consejos.</div>
+ <div class="card">${ta('e_pregunta','La pregunta que más me movió')}</div>`}
+
+function practicaTexto(){
+ return `MI PRÁCTICA DELIBERADA · Sesión 5 · ${v('nombre')}\n\n(a) Estilo que voy a practicar: ${v('p_a')}\n(b) Situación real (con quién y cuándo): ${v('p_b')}\n(c) Conducta y frase de apertura: ${v('p_c')}\n(d) Intento 1: miércoles 11 de noviembre. Repeticiones 2 y 3: antes del martes 17.\n(e) Señal de que funcionó: ${v('p_e')}\n(f) Frase de mi primer maestro que me va a querer sacar de ahí: ${v('p_f')}\n(g) Quién me dará retroalimentación: ${v('p_g')}\n\nEnsayo: calificación ${v('p_cal')}/5 · Ajuste: ${v('p_aj')}\n\nTestigo: ${v('p_testigo')}`}
+function viewPractica(){
+ afterHooks.push(()=>{document.getElementById('cpP').onclick=()=>copyText(practicaTexto());document.getElementById('waP').onclick=e=>{e.currentTarget.href=waLink(practicaTexto()+'\n\nTe nombro mi testigo. ¿Me preguntas el miércoles cómo me fue?')}});
+ return `<h1>Hilo 6 · El estilo que voy a practicar</h1>
+ <div class="note"><b>Regla:</b> el estilo sale de lo que nunca te han visto, de tu fachada o del estilo que evitas. Nunca del dominante. Si la parte del trabajo que devolviste en la S4 sigue abierta, practica ahí.</div>
+ <div class="card">${sel('p_a','(a) El estilo que voy a practicar',STYLES.map(s=>s.name))}
+ ${ta('p_b','(b) La situación real: con quién y cuándo',v('real_sit'))}
+ ${ta('p_c','(c) Lo que voy a hacer distinto, y la frase textual con la que voy a abrir')}
+ <div class="info">(d) <b>Primer intento: mañana, miércoles 11 de noviembre,</b> en tu trabajo. Lo contamos al abrir la S6. Dos repeticiones más antes de la S7 (martes 17).</div>
+ ${ta('p_e','(e) La señal en la otra persona que me dirá si funcionó')}
+ ${ta('p_f','(f) La frase de mi primer maestro que me va a querer sacar de ahí',v('m1_frase'))}
+ ${tx('p_g','(g) Quién me dará retroalimentación en mi trabajo')}</div>
+ <div class="card"><h2>Ensayo relámpago</h2><p class="small">Di tu frase en voz alta con el estilo nuevo. Tu compañero te califica.</p>
+ ${sel('p_cal','¿Sonó a ese estilo? (1 a 5)',['1','2','3','4','5'])}${ta('p_aj','El ajuste que me propuso')}</div>
+ <div class="card"><h2>Mi testigo</h2>${tx('p_testigo','Nombre de mi compañero testigo')}
+ <p class="small">Envíale tu tarjeta por WhatsApp: ese mensaje es la firma.</p>
+ <div class="row"><a class="btn btn-g" id="waP" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a><button class="btn btn-s" id="cpP">Copiar</button></div></div>`}
+
+function resumenTexto(){
+ const {r,n}=scores();
+ let t=`MI RESUMEN · Sesión 5 · Estilos y Teorías del Liderazgo\n${v('nombre')}\n\n`;
+ t+=`DEBATE\nNúmero al inicio: ${v('num_ini')} · al cierre: ${v('num_fin')} · Grupo: ${v('grupoDebate')}\n\n`;
+ t+=`MIS MAESTROS\n1. Primer maestro (${v('m1_donde')}): "${v('m1_frase')}" → ${v('m1_zona')}\n2. Primer jefe: "${v('m2_frase')}" → ${v('m2_zona')}\n3. El jefe que más me marcó: "${v('m3_frase')}" → ${v('m3_zona')}\nPrimer cargo: ${v('c1')} · Hoy: ${v('c2')}\n${v('c_preg')}\n\n`;
+ t+=`MI PERFIL${n<30?' (incompleto)':''}\n`+STYLES.map(s=>`${s.name}: ${r[s.id]}`).join(' · ')+`\nMás natural: ${v('r_nat')} · Bajo presión: ${v('r_pres')} · Menos usado: ${v('r_menos')}\n${v('r_sit')}\n${v('r_maestro')}\n\n`;
+ t+=`ESPEJO\n`+STYLES.map(s=>`${s.name}: más te veo ${v('e_mas_'+s.id,'0')} · nunca ${v('e_nun_'+s.id,'0')}`).join('\n')+`\nCoincide: ${v('e_coincide')}\nPunto ciego: ${v('e_ciego')}\nFachada: ${v('e_fachada')}\nPregunta que me movió: ${v('e_pregunta')}\n\n`;
+ t+=practicaTexto();
+ return t}
+function viewResumen(){
+ const txt=resumenTexto();
+ afterHooks.push(()=>{document.getElementById('cpR').onclick=()=>copyText(txt);document.getElementById('waR').href=waLink(txt)});
+ const obsUrl=location.href.split('#')[0]+'#observador';
+ return `<h1>Mi resumen</h1><div class="info">Copia este texto y pégalo en tu taller de la Sesión 5 (entrega: viernes 20 de noviembre). También puedes enviártelo por WhatsApp.</div>
+ <div class="row"><button class="btn btn-p" id="cpR">Copiar todo</button><a class="btn btn-g" id="waR" href="#" target="_blank" rel="noopener">Enviarme por WhatsApp</a></div>
+ <div class="card" style="margin-top:12px;white-space:pre-wrap;font-size:.85rem">${esc(txt)}</div>
+ <div class="card"><h2>Tarea para la Sesión 8 · 360°</h2><p>Envía este enlace a tres personas de tu trabajo (un jefe o par, un colaborador y alguien de tu elección). Responden en su celular y te envían su resultado.</p>
+ <p style="word-break:break-all;background:#EEF2F8;padding:8px;border-radius:8px;font-size:.85rem">${esc(obsUrl)}</p>
+ <div class="row"><button class="btn btn-s" id="cpO">Copiar enlace</button></div></div>`}
+document.addEventListener('click',e=>{if(e.target&&e.target.id==='cpO'){copyText(location.href.split('#')[0]+'#observador')}});
+
+/* ---------- observador ---------- */
+let O={};try{O=JSON.parse(localStorage.getItem('kitS5obs')||'{}')}catch(e){O={}}
+function saveO(){try{localStorage.setItem('kitS5obs',JSON.stringify(O))}catch(e){}}
+function viewObservador(){
+ return `<h1>Mirada de un observador</h1><p class="sub">Liderazgo y Dirección de Equipos e Individuos · MBA · Pontificia Universidad Javeriana</p>
+ <div class="info">Una persona de tu trabajo está en un programa de formación en liderazgo y te pide tu mirada honesta. Piensa en lo que le has visto hacer en los últimos tres meses, sobre todo bajo presión. No hay respuestas buenas o malas.</div>
+ <div class="card"><label>¿A quién estás evaluando? (nombre)</label><input type="text" id="oName" value="${esc(O.name||'')}">
+ <label>Tu relación con esa persona</label><select id="oRel"><option value="">Elegir…</option>${['Jefe','Par','Colaborador','Otro'].map(x=>`<option ${O.rel===x?'selected':''}>${x}</option>`).join('')}</select></div>
+ <p class="small">Cada frase describe a la persona que evalúas. 1 Casi nunca · 2 Pocas veces · 3 Algunas veces · 4 Frecuentemente · 5 Casi siempre</p>
+ <div class="card">${OBS.map((t,k)=>{const i=k+1;return `<div class="item"><div class="q"><span class="n">${i}.</span>${t}</div><div class="scale">${[1,2,3,4,5].map(x=>`<button data-i="${i}" data-v="${x}" class="${O['a'+i]===x?'on':''}">${x}</button>`).join('')}</div></div>`}).join('')}</div>
+ <button class="btn btn-p" id="oDone">Ver resultado</button><div id="oRes"></div>`}
+function obsResult(){
+ const r={};STYLES.forEach(s=>{r[s.id]=s.items.reduce((a,i)=>a+(O['a'+i]||0),0)});
+ const txt=`Mirada de observador (${O.rel||'—'}) sobre ${O.name||'—'}:\n`+STYLES.map(s=>`${s.name}: ${r[s.id]}`).join('\n');
+ document.getElementById('oRes').innerHTML=`<div class="card" style="margin-top:12px"><h2>Resultado</h2>${STYLES.map(s=>`<div class="bar"><div class="lbl">${s.name}</div><div class="track"><div class="fill" style="width:${Math.max(4,(r[s.id]-5)/20*100)}%"></div></div><div class="val">${r[s.id]}</div></div>`).join('')}
+ <p>Envía este resultado a la persona evaluada:</p><div class="row"><a class="btn btn-g" href="${waLink(txt)}" target="_blank" rel="noopener">Enviar por WhatsApp</a><button class="btn btn-s" id="oCp">Copiar</button></div></div>`;
+ document.getElementById('oCp').onclick=()=>copyText(txt)}
+function bindObs(){
+ document.getElementById('oName').oninput=e=>{O.name=e.target.value;saveO()};
+ document.getElementById('oRel').onchange=e=>{O.rel=e.target.value;saveO()};
+ document.querySelectorAll('.scale button').forEach(b=>b.onclick=()=>{O['a'+b.dataset.i]=+b.dataset.v;saveO();b.parentNode.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b))});
+ document.getElementById('oDone').onclick=()=>{const n=OBS.filter((_,k)=>O['a'+(k+1)]).length;if(n<30){toast(`Faltan ${30-n} respuestas`);return}obsResult()};
+}
+
+/* ---------- arranque ---------- */
+function fromHash(){const h=(location.hash||'').replace('#','');if(h==='observador'||VIEWS.some(x=>x[0]===h))cur=h;render()}
+window.addEventListener('hashchange',fromHash);
+fromHash();
+</script>
+</body>
+</html>
