@@ -232,7 +232,7 @@ function styleName(id){return STYLES.find(s=>s.id===id).name}
 /* ---------- vistas ---------- */
 const VIEWS=[
  ['inicio','Inicio'],['debate','1 · Debate'],['maestros','2 · Maestros'],['autodx','3 · Autodiagnóstico'],
- ['investigacion','3 · Investigación'],['caso','4 · Caso'],['espejo','5 · Espejo'],['practica','6 · Práctica'],['resumen','Mi resumen']];
+ ['investigacion','3 · Investigación'],['caso','4 · Caso'],['espejo','5 · Espejo'],['practica','6 · Práctica'],['taller','Mi taller'],['resumen','Mi resumen']];
 function nav(){document.getElementById('nav').innerHTML=VIEWS.map(([id,l])=>`<button data-v="${id}" class="${cur===id?'on':''}">${l}</button>`).join('');
  document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.v))}
 let cur='inicio';
@@ -244,7 +244,7 @@ function render(){
  document.getElementById('who').textContent=name?`Sesión 5 · ${name}`:'Sesión 5 · Estilos y Teorías del Liderazgo';
  if(cur==='observador'){document.getElementById('nav').innerHTML='';document.getElementById('who').textContent='Mirada de un observador · 360°';m.innerHTML=viewObservador();bindObs();return}
  nav();
- const fn={inicio:viewInicio,debate:viewDebate,maestros:viewMaestros,autodx:viewAutodx,investigacion:viewInvest,caso:viewCaso,espejo:viewEspejo,practica:viewPractica,resumen:viewResumen}[cur]||viewInicio;
+ const fn={inicio:viewInicio,debate:viewDebate,maestros:viewMaestros,autodx:viewAutodx,investigacion:viewInvest,caso:viewCaso,espejo:viewEspejo,practica:viewPractica,taller:viewTaller,resumen:viewResumen}[cur]||viewInicio;
  m.innerHTML=fn(); bindInputs(m); afterRender();
 }
 let afterHooks=[];function afterRender(){const h=afterHooks;afterHooks=[];h.forEach(f=>f())}
@@ -394,6 +394,21 @@ function viewEspejo(){
  <div class="note"><b>Tríos de la verdad.</b> Di en voz alta frente a tus dos compañeros:<br><br>"El estilo que ejerzo <b>por comodidad</b> es ___."<br>"El estilo que evito <b>por inseguridad</b> es ___, y lo evito porque ___."<br><br>Cada compañero puede hacer una sola pregunta. Sin consejos.</div>
  <div class="card">${ta('e_pregunta','La pregunta que más me movió')}</div>`}
 
+function viewTaller(){
+ return `<h1>Mi taller · Sesión 5</h1>
+ <div class="info">El taller tiene tres partes, en el mismo orden de la rúbrica. La parte 1 ya está en las secciones anteriores; aquí completas las partes 2 y 3. Todo queda junto en <b>Mi resumen</b>. Entrega: viernes 20 de noviembre.</div>
+ <div class="card"><h2>1 · Producto de la sesión (40%)</h2><p class="small">Tu perfil de estilos, tu mapa de brecha y tu práctica deliberada. Se toma de las secciones 3, 5 y 6.</p></div>
+ <div class="card"><h2>2 · Ficha de aprendizaje (30%)</h2>
+ ${ta('t_aprend','Un aprendizaje de esta sesión')}
+ ${ta('t_practica','Una buena práctica que puedo aplicar en mi organización')}
+ ${ta('t_comp','Un compromiso con fecha','Qué voy a hacer, con quién y para cuándo')}</div>
+ <div class="card"><h2>3 · Seguimiento del compromiso de la Sesión 4 (30%)</h2>
+ <p class="small">La parte del trabajo que devolviste en la S4.</p>
+ ${ta('t4_que','Qué parte del trabajo devolví, a quién y con qué nivel de autonomía (1 a 7)')}
+ ${sel('t4_cumpli','¿Cumplí el compromiso?',['Sí','En parte','No'])}
+ ${ta('t4_paso','Qué pasó: los hechos, no mis interpretaciones')}
+ ${ta('t4_revela','Si no lo cumplí o lo cumplí en parte: por qué, y qué revela eso de mi liderazgo')}
+ <div class="note">Si no cumpliste, dilo. Un análisis honesto de por qué no lo cumpliste puede llegar a 3,5 en este criterio. Un reporte maquillado no suma.</div></div>`}
 function practicaTexto(){
  return `MI PRÁCTICA DELIBERADA · Sesión 5 · ${v('nombre')}\n\n(a) Estilo que voy a practicar: ${v('p_a')}\n(b) Situación real (con quién y cuándo): ${v('p_b')}\n(c) Conducta y frase de apertura: ${v('p_c')}\n(d) Intento 1: miércoles 11 de noviembre. Repeticiones 2 y 3: antes del martes 17.\n(e) Señal de que funcionó: ${v('p_e')}\n(f) Frase de mi primer maestro que me va a querer sacar de ahí: ${v('p_f')}\n(g) Quién me dará retroalimentación: ${v('p_g')}\n\nEnsayo: calificación ${v('p_cal')}/5 · Ajuste: ${v('p_aj')}\n\nTestigo: ${v('p_testigo')}`}
 function viewPractica(){
@@ -415,18 +430,20 @@ function viewPractica(){
 
 function resumenTexto(){
  const {r,n}=scores();
- let t=`MI RESUMEN · Sesión 5 · Estilos y Teorías del Liderazgo\n${v('nombre')}\n\n`;
+ let t=`TALLER · SESIÓN 5 · Estilos y Teorías del Liderazgo\n${v('nombre')}\n\n1 · PRODUCTO DE LA SESIÓN\n\n`;
  t+=`DEBATE\nNúmero al inicio: ${v('num_ini')} · al cierre: ${v('num_fin')} · Grupo: ${v('grupoDebate')}\n\n`;
  t+=`MIS MAESTROS\n1. Primer maestro (${v('m1_donde')}): "${v('m1_frase')}" → ${v('m1_zona')}\n2. Primer jefe: "${v('m2_frase')}" → ${v('m2_zona')}\n3. El jefe que más me marcó: "${v('m3_frase')}" → ${v('m3_zona')}\nPrimer cargo: ${v('c1')} · Hoy: ${v('c2')}\n${v('c_preg')}\n\n`;
  t+=`MI PERFIL${n<30?' (incompleto)':''}\n`+STYLES.map(s=>`${s.name}: ${r[s.id]}`).join(' · ')+`\nMás natural: ${v('r_nat')} · Bajo presión: ${v('r_pres')} · Menos usado: ${v('r_menos')}\n${v('r_sit')}\n${v('r_maestro')}\n\n`;
  t+=`ESPEJO\n`+STYLES.map(s=>`${s.name}: más te veo ${v('e_mas_'+s.id,'0')} · nunca ${v('e_nun_'+s.id,'0')}`).join('\n')+`\nCoincide: ${v('e_coincide')}\nPunto ciego: ${v('e_ciego')}\nFachada: ${v('e_fachada')}\nPregunta que me movió: ${v('e_pregunta')}\n\n`;
  t+=practicaTexto();
+ t+=`\n\n2 · FICHA DE APRENDIZAJE\nAprendizaje: ${v('t_aprend')}\nBuena práctica para mi organización: ${v('t_practica')}\nCompromiso con fecha: ${v('t_comp')}`;
+ t+=`\n\n3 · SEGUIMIENTO DEL COMPROMISO DE LA SESIÓN 4\nQué devolví, a quién y con qué autonomía: ${v('t4_que')}\n¿Cumplí?: ${v('t4_cumpli')}\nQué pasó: ${v('t4_paso')}\nPor qué y qué revela de mi liderazgo: ${v('t4_revela')}`;
  return t}
 function viewResumen(){
  const txt=resumenTexto();
  afterHooks.push(()=>{document.getElementById('cpR').onclick=()=>copyText(txt);document.getElementById('waR').href=waLink(txt)});
  const obsUrl=location.href.split('#')[0]+'#observador';
- return `<h1>Mi resumen</h1><div class="info">Copia este texto y pégalo en tu taller de la Sesión 5 (entrega: viernes 20 de noviembre). También puedes enviártelo por WhatsApp.</div>
+ return `<h1>Mi resumen</h1><div class="info">Este texto es tu taller completo de la Sesión 5, en el orden de la rúbrica. Revisa que <b>Mi taller</b> esté lleno, cópialo y entrégalo a más tardar el viernes 20 de noviembre. También puedes enviártelo por WhatsApp.</div>
  <div class="row"><button class="btn btn-p" id="cpR">Copiar todo</button><a class="btn btn-g" id="waR" href="#" target="_blank" rel="noopener">Enviarme por WhatsApp</a></div>
  <div class="card" style="margin-top:12px;white-space:pre-wrap;font-size:.85rem">${esc(txt)}</div>
  <div class="card"><h2>Tarea para la Sesión 8 · 360°</h2><p>Envía este enlace a tres personas de tu trabajo (un jefe o par, un colaborador y alguien de tu elección). Responden en su celular y te envían su resultado.</p>
