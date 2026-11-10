@@ -213,6 +213,8 @@ const DESAFIOS=[
  ['Desafío 2 · La fusión de dos áreas','La empresa fusiona dos áreas con culturas opuestas: una muy rápida y otra muy cuidadosa con los procesos. En 90 días debe existir un solo proceso. Los dos jefes anteriores compiten por quedarse con el liderazgo del área nueva.'],
  ['Desafío 3 · El incidente','Un error en un sistema expuso datos de clientes. Hay que actuar en las próximas 24 horas. El equipo técnico propone tres soluciones distintas y no se pone de acuerdo, y el área comercial presiona para que no se informe a los clientes todavía.']];
 
+/* ---------- modo profesor ---------- */
+const PROFE = { 'Profesor · prueba 1': 'A', 'Profesor · prueba 2': 'B' };
 /* ---------- estado ---------- */
 let S={};
 try{S=JSON.parse(localStorage.getItem('kitS5')||'{}')}catch(e){S={}}
@@ -249,11 +251,14 @@ function render(){
 }
 let afterHooks=[];function afterRender(){const h=afterHooks;afterHooks=[];h.forEach(f=>f())}
 
+function nombresLista(){return v('profe')?[...Object.keys(ESTUDIANTES),...Object.keys(PROFE)]:Object.keys(ESTUDIANTES)}
+function versionDe(n){return ESTUDIANTES[n]||PROFE[n]||'A'}
 function viewInicio(){
- afterHooks.push(()=>{document.getElementById('goDeb').onclick=()=>go('debate')});
+ afterHooks.push(()=>{document.getElementById('goDeb').onclick=()=>go('debate');const r=document.getElementById('resetP');if(r)r.onclick=()=>{S={profe:true};save();toast('Pruebas borradas');render()};const x=document.getElementById('exitP');if(x)x.onclick=()=>{S={};save();render()}});
  return `<h1>Kit digital · Sesión 5</h1><p class="sub">Martes 10 de noviembre de 2026 · Estilos y Teorías del Liderazgo</p>
- <div class="card">${sel('nombre','¿Cuál es tu número? (tu posición en la lista de clase, proyectada en la pantalla)',Object.keys(ESTUDIANTES))}
+ <div class="card">${sel('nombre','¿Cuál es tu número? (tu posición en la lista de clase, proyectada en la pantalla)',nombresLista())}
  <p class="small" style="margin-top:8px">Lo que escribas se guarda solo en este celular. No le llega a nadie, salvo lo que tú decidas copiar o enviar.</p></div>
+ ${v('profe')?`<div class="note"><b>Modo profesor.</b> "Prueba 1" ve la versión de Daniela y "prueba 2" la de Daniel. Lo que pruebes queda solo en este celular.<div class="row"><button class="btn btn-s" id="resetP">Borrar mis pruebas</button><button class="btn btn-s" id="exitP">Salir del modo profesor</button></div></div>`:''}
  <div class="info">Abre cada sección solo cuando el profesor lo indique. Cada sección tiene el número del hilo de la noche.</div>
  <div class="card"><h3>Reglas del celular esta noche</h3><p>• Solo para este kit.<br>• Boca abajo en los momentos de conversación.<br>• Lo que se dice en el salón se queda en el salón.</p></div>
  <button class="btn btn-p" id="goDeb">Empezar</button>`}
@@ -359,7 +364,7 @@ function viewInvest(){
 function viewCaso(){
  const name=v('nombre');
  if(!name) return `<h1>Hilo 4</h1><div class="note">Primero elige tu nombre en <b>Inicio</b>.</div>`;
- const ver=ESTUDIANTES[name]||'A';const fem=ver==='A';
+ const ver=versionDe(name);const fem=ver==='A';
  const N=fem?'Daniela Restrepo':'Daniel Restrepo';const P=fem?'Daniela':'Daniel';
  const done=v('caso_ok');
  afterHooks.push(()=>{const b=document.getElementById('casoOk');if(b)b.onclick=()=>{const need=['k_comp','k_simp','k_conf','k_contr','k_d1','k_d2','k_d3'];if(need.some(k=>!v(k))){toast('Completa todas las calificaciones');return}setv('caso_ok',true);render()}});
@@ -476,7 +481,7 @@ function bindObs(){
 }
 
 /* ---------- arranque ---------- */
-function fromHash(){const h=(location.hash||'').replace('#','');if(h==='observador'||VIEWS.some(x=>x[0]===h))cur=h;render()}
+function fromHash(){const h=(location.hash||'').replace('#','');if(h==='profesor'){setv('profe',true);cur='inicio';try{history.replaceState(null,'','#inicio')}catch(e){};render();return}if(h==='observador'||VIEWS.some(x=>x[0]===h))cur=h;render()}
 window.addEventListener('hashchange',fromHash);
 fromHash();
 </script>
